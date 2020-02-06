@@ -4,18 +4,27 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Handler;
 import android.os.RemoteException;
 import android.view.View;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.Toolbar;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.android.elabscoordinator.Adapter.StudentAdapter;
 import com.android.elabscoordinator.Model.Student;
 import com.android.elabscoordinator.Retrofit.AllStudent;
 import com.android.elabscoordinator.Retrofit.Api;
 import com.android.elabscoordinator.Retrofit.Students;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 import org.altbeacon.beacon.Beacon;
 import org.altbeacon.beacon.BeaconConsumer;
@@ -45,21 +54,40 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     private BeaconManager beaconManager;
     RecyclerView recyclerView;
-    String subjectCode = "2";
+    String subjectCode = "1";
     ArrayList<Student> studentList;
     StudentAdapter adapter;
     FloatingActionButton fab;
+    ProgressBar progressBar;
+    View progresslayout;
+    TextView progressText;
+    LottieAnimationView progressAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+         SharedPreferences pref =getSharedPreferences("subject_code", Context.MODE_PRIVATE);
+         subjectCode = pref.getString("code","null");
+        Toast.makeText(this, subjectCode, Toast.LENGTH_SHORT).show();
+
+        progresslayout = findViewById(R.id.progress);
         fab = findViewById(R.id.floatingActionButton);
+        progressBar = findViewById(R.id.progress_circular);
+        progressText = progresslayout.findViewById(R.id.errorText);
+        progressAnimation = progresslayout.findViewById(R.id.lottieAnimationView);
+        progressAnimation.setAnimation(R.raw.progress);
+
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 beaconManager.unbind(MainActivity.this);
+               // progressBar.setIndeterminate(true);
+                //progressBar.setVisibility(View.VISIBLE);
+                progresslayout.setVisibility(View.VISIBLE);
+                progressAnimation.playAnimation();
 
                 retrofit();
 
@@ -180,12 +208,35 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
         call.enqueue(new Callback<AllStudent>() {
             @Override
             public void onResponse(Call<AllStudent> call, Response<AllStudent> response) {
+                progressAnimation.setAnimation(R.raw.done);
+                progressAnimation.playAnimation();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+
+                        startActivity(new Intent(MainActivity.this,HomeActivity.class));
+                    }
+                }, 3000);
+                progressText.setText("success");
                 Toast.makeText(MainActivity.this, ""+response.body().toString(), Toast.LENGTH_SHORT).show();
 
             }
 
             @Override
             public void onFailure(Call<AllStudent> call, Throwable t) {
+                progressAnimation.setAnimation(R.raw.error);
+                progressAnimation.playAnimation();
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+
+
+                        startActivity(new Intent(MainActivity.this,HomeActivity.class));
+                    }
+                }, 3000);
+                progressText.setText("error please try after some time");
+                Toast.makeText(MainActivity.this, ""+t.toString(), Toast.LENGTH_SHORT).show();
 
             }
         });
