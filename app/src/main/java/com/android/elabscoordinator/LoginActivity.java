@@ -3,6 +3,7 @@ package com.android.elabscoordinator;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     TextInputEditText password;
      FirebaseAuth mAuth;
     Button login;
+    ProgressDialog singnInprogressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +47,13 @@ public class LoginActivity extends AppCompatActivity {
         login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                singnInprogressDialog = new ProgressDialog(LoginActivity.this);
+                singnInprogressDialog.setMessage("logging in please wait......");
+                singnInprogressDialog.show();
                 signInUser(email.getText().toString(),password.getText().toString());
-                Toast.makeText(LoginActivity.this, email.getText().toString()+password.getText().toString(), Toast.LENGTH_SHORT).show();
+                //Toast.makeText(LoginActivity.this, email.getText().toString()+password.getText().toString(), Toast.LENGTH_SHORT).show();
+
+
 
             }
         });

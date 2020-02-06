@@ -2,10 +2,14 @@ package com.android.elabscoordinator;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.app.ProgressDialog;
 import android.bluetooth.BluetoothAdapter;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -23,6 +27,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 public class HomeActivity extends AppCompatActivity {
     Button takeAttendance;
     Button signOut;
+    ProgressDialog signOutProgressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +38,10 @@ public class HomeActivity extends AppCompatActivity {
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                signOutProgressDialog = new ProgressDialog(HomeActivity.this);
+                signOutProgressDialog.setMessage("Logging out please have some patient");
+                signOutProgressDialog.show();
+
                 signOutUser();
 
             }
@@ -103,5 +112,10 @@ public class HomeActivity extends AppCompatActivity {
         startActivity(new Intent(HomeActivity.this,LoginActivity.class));
         finish();
     }
+
+
+
+
+
 
 }

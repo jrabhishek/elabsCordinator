@@ -84,6 +84,8 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
             @Override
             public void onClick(View view) {
                 beaconManager.unbind(MainActivity.this);
+                beaconManager.disableForegroundServiceScanning();
+
                // progressBar.setIndeterminate(true);
                 //progressBar.setVisibility(View.VISIBLE);
                 progresslayout.setVisibility(View.VISIBLE);

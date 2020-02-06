@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "621030468867",
+    "firebase_url": "https://elabs-coordinator2.firebaseio.com",
+    "project_id": "elabs-coordinator2",
+    "storage_bucket": "elabs-coordinator2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:621030468867:android:18d4443e4095f7eb714d36",
+        "android_client_info": {
+          "package_name": "com.android.elabscoordinator"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "621030468867-q1m34js6mq6tm4uqn7egd3u2tttfd78s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.android.elabscoordinator",
+            "certificate_hash": "cd802139ca28a6e381a3878ec67cd830d4f8f200"
+          }
+        },
+        {
+          "client_id": "621030468867-rqrts4op37u4ar1j06cdrg0kle2b3r4q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB5LSSlYbpnLB8YEyryhkgI9qylQqZnZ0U"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "621030468867-rqrts4op37u4ar1j06cdrg0kle2b3r4q.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
