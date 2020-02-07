@@ -10,5 +10,8 @@ public interface Api {
     @POST("api/mobile/attendance")
     Call<AllStudent> request(@Body AllStudent data);
 
+    @POST("api/register")
+    Call<RegisterNewStudent> register(@Body RegisterNewStudent student);
+
 
 }

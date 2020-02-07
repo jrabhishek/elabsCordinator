@@ -1,3 +1,41 @@
 <resources>
     <string name="app_name">Elabs Coordinator</string>
+    <string-array name="gender">
+        <item>select gender</item>
+        <item>male</item>
+        <item>Female</item>
+
+    </string-array>
+    <string-array name="courses">
+        <item>select subject</item>
+        <item>android</item>
+        <item>embedded</item>
+        <item>iot</item>
+        <item>Ar vr</item>
+        <item>networking</item>
+        <item>Machine Learning</item>
+        <item>java</item>
+        <item>web development</item>
+
+    </string-array>
+    <string-array name="year">
+        <item>select year</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+
+    </string-array>
+    <string-array name="branch">
+        <item>select branch</item>
+        <item>CSE</item>
+        <item>CSSE</item>
+        <item>CSCE</item>
+        <item>IT</item>
+        <item>EEE</item>
+        <item>ETC</item>
+        <item>others</item>
+
+
+    </string-array>
+
 </resources>

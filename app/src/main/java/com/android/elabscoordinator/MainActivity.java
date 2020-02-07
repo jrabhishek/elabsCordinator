@@ -1,5 +1,6 @@
 package com.android.elabscoordinator;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -221,7 +222,8 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
                     }
                 }, 3000);
                 progressText.setText("success");
-                Toast.makeText(MainActivity.this, ""+response.body().toString(), Toast.LENGTH_SHORT).show();
+
+                //Toast.makeText(MainActivity.this, ""+response.body().toString(), Toast.LENGTH_SHORT).show();
 
             }
 

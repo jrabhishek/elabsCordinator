@@ -1,6 +1,7 @@
 package com.android.elabscoordinator;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.ProgressDialog;
@@ -81,6 +82,11 @@ public class LoginActivity extends AppCompatActivity {
                             checkSingleLogin(mAuth.getCurrentUser().getUid());
                             FirebaseUser user = mAuth.getCurrentUser();
                         } else {
+                            AlertDialog.Builder builder;
+                            builder = new AlertDialog.Builder(LoginActivity.this);
+                            builder.setMessage("server error").setTitle("Failure in signin");
+                            builder.create();
+                            builder.show();
                             // If sign in fails, display a message to the user.
                             Toast.makeText(LoginActivity.this, "failure", Toast.LENGTH_SHORT).show();
                         }
@@ -106,6 +112,16 @@ public class LoginActivity extends AppCompatActivity {
                                 {
                                     modifingIsOnline(Uid,subject,code);
 
+                                }
+                                else
+                                {
+                                    FirebaseAuth.getInstance().signOut();
+                                    singnInprogressDialog.dismiss();
+                                    AlertDialog.Builder builder;
+                                    builder = new AlertDialog.Builder(LoginActivity.this);
+                                    builder.setMessage("more than one signIn detected").setTitle("Failure in signin");
+                                    builder.create();
+                                    builder.show();
                                 }
                             }
                         } else {
