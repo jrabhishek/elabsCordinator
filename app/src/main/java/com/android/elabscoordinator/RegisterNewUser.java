@@ -142,6 +142,7 @@ public class RegisterNewUser extends AppCompatActivity   {
            public void onClick(View view) {
                mRoll = roll.getText().toString();
                mName = name.getText().toString();
+               mName = mName.charAt(0)+mName.substring(1);
                mContact = contact_no.getText().toString();
                email = mRoll+"@kiit.ac.in";
                if (isValidResponce())
@@ -225,6 +226,7 @@ public class RegisterNewUser extends AppCompatActivity   {
             builder.create();
             builder.show();
             startActivity(new Intent(RegisterNewUser.this,HomeActivity.class));
+            finish();
         }
 
         @Override
@@ -236,6 +238,7 @@ public class RegisterNewUser extends AppCompatActivity   {
             builder.create();
             builder.show();
             startActivity(new Intent(RegisterNewUser.this,HomeActivity.class));
+            finish();
 
         }
     });

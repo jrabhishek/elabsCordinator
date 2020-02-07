@@ -2,20 +2,20 @@
     <string name="app_name">Elabs Coordinator</string>
     <string-array name="gender">
         <item>select gender</item>
-        <item>male</item>
+        <item>Male</item>
         <item>Female</item>
 
     </string-array>
     <string-array name="courses">
         <item>select subject</item>
-        <item>android</item>
-        <item>embedded</item>
-        <item>iot</item>
-        <item>Ar vr</item>
-        <item>networking</item>
+        <item>Android Development</item>
+        <item>Embedded Systems</item>
+        <item>IOT</item>
+        <item>AR/VR</item>
+        <item>Networking</item>
         <item>Machine Learning</item>
-        <item>java</item>
-        <item>web development</item>
+        <item>Java</item>
+        <item>Web Development</item>
 
     </string-array>
     <string-array name="year">

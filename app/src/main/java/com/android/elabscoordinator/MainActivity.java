@@ -11,6 +11,8 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.RemoteException;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -63,11 +65,32 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
     View progresslayout;
     TextView progressText;
     LottieAnimationView progressAnimation;
+    TextView textView;
+    HashSet<Student> hs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        textView = findViewById(R.id.count);
+        hs = new HashSet<>();
+        textView.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
          SharedPreferences pref =getSharedPreferences("subject_code", Context.MODE_PRIVATE);
          subjectCode = pref.getString("code","null");
@@ -117,8 +140,10 @@ public class MainActivity extends AppCompatActivity implements BeaconConsumer {
                         {
                             Toast.makeText(MainActivity.this, ""+beacon.getId1(), Toast.LENGTH_SHORT).show();
                             studentList.add(new Student(getAuthKey(beacon.getId1()),decode(beacon.getId1())));
-                            HashSet<Student> hs = new HashSet<>();
+
                             hs.addAll(studentList);
+                            String s = "student count \n"+hs.size();
+                            textView.setText(s);
                             studentList.clear();
                             studentList.addAll(hs);
                           //  Toast.makeText(MainActivity.this, ""+decode(beacon.getId1()), Toast.LENGTH_SHORT).show();
